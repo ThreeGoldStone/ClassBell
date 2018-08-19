@@ -1,6 +1,7 @@
 package com.jimduan.classbell
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.ViewHolder
@@ -13,6 +14,8 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.jimduan.classbell.bean.AlarmInfoBean
 import com.jimduan.classbell.utils.toString1
 import com.jimduan.classbell.utils.toString2
+import io.objectbox.Box
+import io.objectbox.BoxStore
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import kotlinx.android.synthetic.main.item_alarminfo.view.*
 
@@ -21,6 +24,7 @@ import kotlinx.android.synthetic.main.item_alarminfo.view.*
  */
 class MainActivityFragment : Fragment() {
     lateinit var data: MutableList<AlarmInfoBean>
+    lateinit var alarmBox: Box<AlarmInfoBean>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
@@ -29,8 +33,15 @@ class MainActivityFragment : Fragment() {
         }).setType(BooleanArray(6, { i -> i > 2 }))
                 .build()
         view.btPickTime.setOnClickListener { timePicker.show() }
-        data = mutableListOf()
+        alarmBox = BoxStore.getDefault().boxFor(AlarmInfoBean::class.java)
+        data = alarmBox.all
         view.recyclerView.adapter = MyAdapter(data);
+
+        view.fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
+
+        }
         return view
     }
 
