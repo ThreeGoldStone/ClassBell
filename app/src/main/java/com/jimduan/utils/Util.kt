@@ -1,4 +1,4 @@
-package com.jimduan.classbell.utils
+package com.jimduan.utils
 
 import java.text.SimpleDateFormat
 import java.util.*

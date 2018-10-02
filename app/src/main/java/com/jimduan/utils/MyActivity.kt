@@ -1,4 +1,4 @@
-package com.jimduan.classbell.utils
+package com.jimduan.utils
 
 import android.support.v7.app.AppCompatActivity
 

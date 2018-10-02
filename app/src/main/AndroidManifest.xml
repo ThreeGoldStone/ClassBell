@@ -12,9 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity
-            android:name="com.jimduan.classbell.activity.SplashActivity"
+            android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash"
             android:theme="@style/FullscreenTheme">
@@ -25,9 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
+        <activity android:name=".TestViewModelActivity" />
+        <activity android:name=".ViewModeActivity"></activity>
     </application>
 
 </manifest>

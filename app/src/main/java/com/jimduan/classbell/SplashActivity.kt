@@ -1,11 +1,10 @@
-package com.jimduan.classbell.activity
+package com.jimduan.classbell
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import com.jimduan.classbell.R
-import com.jimduan.classbell.utils.MyActivity
+import com.jimduan.utils.MyActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 /**

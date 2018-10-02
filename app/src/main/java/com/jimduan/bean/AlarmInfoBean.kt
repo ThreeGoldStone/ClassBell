@@ -1,4 +1,4 @@
-package com.jimduan.classbell.bean
+package com.jimduan.bean
 
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
