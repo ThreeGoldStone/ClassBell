@@ -1,0 +1,70 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:6263818509778669836",
+      "lastPropertyId": "6:5307176072763543120",
+      "name": "AlarmInfoBean",
+      "properties": [
+        {
+          "id": "1:4044430419458981542",
+          "name": "repeatType"
+        },
+        {
+          "id": "2:8621200832430074328",
+          "name": "ringTone"
+        },
+        {
+          "id": "3:870881122658198490",
+          "name": "remarks"
+        },
+        {
+          "id": "4:4099712847136493030",
+          "name": "state"
+        },
+        {
+          "id": "5:3218319052918556736",
+          "name": "id"
+        },
+        {
+          "id": "6:5307176072763543120",
+          "name": "time"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:1281925554365523930",
+      "lastPropertyId": "3:4849598538259682667",
+      "name": "AlarmRecordBean",
+      "properties": [
+        {
+          "id": "1:4357015782867661601",
+          "name": "state"
+        },
+        {
+          "id": "2:221690412854785200",
+          "name": "id"
+        },
+        {
+          "id": "3:4849598538259682667",
+          "name": "createTime"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:1281925554365523930",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

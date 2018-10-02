@@ -1,0 +1,198 @@
+{
+  "kind": "Pod",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "web-test-594d4755bf-4tfzv",
+    "generateName": "web-test-594d4755bf-",
+    "namespace": "esn-system",
+    "selfLink": "/api/v1/namespaces/esn-system/pods/web-test-594d4755bf-4tfzv",
+    "uid": "13b92538-c08c-11e8-a892-000c29c85d31",
+    "resourceVersion": "870",
+    "creationTimestamp": "2018-09-25T06:27:29Z",
+    "labels": {
+      "app": "web-test",
+      "pod-template-hash": "1508031169"
+    },
+    "ownerReferences": [
+      {
+        "apiVersion": "apps/v1",
+        "kind": "ReplicaSet",
+        "name": "web-test-594d4755bf",
+        "uid": "13b6186b-c08c-11e8-a892-000c29c85d31",
+        "controller": true,
+        "blockOwnerDeletion": true
+      }
+    ]
+  },
+  "spec": {
+    "volumes": [
+      {
+        "name": "accesslog",
+        "hostPath": {
+          "path": "/data/log/nginx",
+          "type": ""
+        }
+      },
+      {
+        "name": "errorlog",
+        "hostPath": {
+          "path": "/data/log/php",
+          "type": ""
+        }
+      },
+      {
+        "name": "default-token-w8ckz",
+        "secret": {
+          "secretName": "default-token-w8ckz",
+          "defaultMode": 420
+        }
+      }
+    ],
+    "containers": [
+      {
+        "name": "web-test",
+        "image": "192.168.1.171:5000/esn-containers/web_test:20180925.142718",
+        "ports": [
+          {
+            "containerPort": 80,
+            "protocol": "TCP"
+          }
+        ],
+        "resources": {
+          "limits": {
+            "memory": "100Mi"
+          },
+          "requests": {
+            "memory": "80Mi"
+          }
+        },
+        "volumeMounts": [
+          {
+            "name": "accesslog",
+            "mountPath": "/data/log/nginx"
+          },
+          {
+            "name": "errorlog",
+            "mountPath": "/data/log/php"
+          },
+          {
+            "name": "default-token-w8ckz",
+            "readOnly": true,
+            "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+          }
+        ],
+        "livenessProbe": {
+          "tcpSocket": {
+            "port": 80
+          },
+          "initialDelaySeconds": 6,
+          "timeoutSeconds": 1,
+          "periodSeconds": 3,
+          "successThreshold": 1,
+          "failureThreshold": 3
+        },
+        "readinessProbe": {
+          "tcpSocket": {
+            "port": 80
+          },
+          "initialDelaySeconds": 4,
+          "timeoutSeconds": 1,
+          "periodSeconds": 2,
+          "successThreshold": 1,
+          "failureThreshold": 3
+        },
+        "lifecycle": {
+          "postStart": {
+            "exec": {
+              "command": [
+                "/server/start_cmd.sh"
+              ]
+            }
+          },
+          "preStop": {
+            "exec": {
+              "command": [
+                "/server/stop_cmd.sh"
+              ]
+            }
+          }
+        },
+        "terminationMessagePath": "/dev/termination-log",
+        "terminationMessagePolicy": "File",
+        "imagePullPolicy": "Always"
+      }
+    ],
+    "restartPolicy": "Always",
+    "terminationGracePeriodSeconds": 30,
+    "dnsPolicy": "ClusterFirst",
+    "serviceAccountName": "default",
+    "serviceAccount": "default",
+    "nodeName": "192.168.1.169",
+    "securityContext": {},
+    "schedulerName": "default-scheduler",
+    "tolerations": [
+      {
+        "key": "node.kubernetes.io/not-ready",
+        "operator": "Exists",
+        "effect": "NoExecute",
+        "tolerationSeconds": 300
+      },
+      {
+        "key": "node.kubernetes.io/unreachable",
+        "operator": "Exists",
+        "effect": "NoExecute",
+        "tolerationSeconds": 300
+      }
+    ],
+    "priority": 0
+  },
+  "status": {
+    "phase": "Running",
+    "conditions": [
+      {
+        "type": "Initialized",
+        "status": "True",
+        "lastProbeTime": null,
+        "lastTransitionTime": "2018-09-25T06:27:29Z"
+      },
+      {
+        "type": "Ready",
+        "status": "True",
+        "lastProbeTime": null,
+        "lastTransitionTime": "2018-09-25T06:27:41Z"
+      },
+      {
+        "type": "ContainersReady",
+        "status": "True",
+        "lastProbeTime": null,
+        "lastTransitionTime": null
+      },
+      {
+        "type": "PodScheduled",
+        "status": "True",
+        "lastProbeTime": null,
+        "lastTransitionTime": "2018-09-25T06:27:29Z"
+      }
+    ],
+    "hostIP": "192.168.1.169",
+    "podIP": "172.30.102.135",
+    "startTime": "2018-09-25T06:27:29Z",
+    "containerStatuses": [
+      {
+        "name": "web-test",
+        "state": {
+          "running": {
+            "startedAt": "2018-09-25T06:27:36Z"
+          }
+        },
+        "lastState": {},
+        "ready": true,
+        "restartCount": 0,
+        "image": "192.168.1.171:5000/esn-containers/web_test:20180925.142718",
+        "imageID": "docker-pullable://192.168.1.171:5000/esn-containers/web_test@sha256:e4c1da8d8fec0dc0285fe2df246e4afd41bcf7ad9677c770132ca90f7b502c46",
+        "containerID": "docker://695475361edf1e965f61e14e139e74b28444f38fc590fca0da9273ac14e6a922"
+      }
+    ],
+    "qosClass": "Burstable"
+  }
+}
