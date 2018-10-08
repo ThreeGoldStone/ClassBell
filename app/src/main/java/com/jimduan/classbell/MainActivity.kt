@@ -12,25 +12,36 @@ class MainActivity : MyActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_schedule -> {
+                showFragmentByIndex(0)
                 return@OnNavigationItemSelectedListener true
-//                supportFragmentManager.beginTransaction().show()
-                var index = 0
-                val transaction = supportFragmentManager.beginTransaction()
-                val size = fragments.size
-
-                transaction.show(fragments[index])
             }
             R.id.navigation_lessons -> {
+                showFragmentByIndex(1)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_achievements -> {
+                showFragmentByIndex(2)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
+                showFragmentByIndex(3)
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
+    }
+
+    fun showFragmentByIndex(index: Int) {
+        val transaction = supportFragmentManager.beginTransaction()
+        val size = fragments.size
+        for (i in 0..(size - 1)) {
+            val fragment = fragments[i]
+            if (index == i)
+                transaction.show(fragment)
+            else
+                transaction.hide(fragment)
+        }
+        transaction.commitNow()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +50,16 @@ class MainActivity : MyActivity() {
         BottomNavigationViewHelper.disableShiftMode(navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         // 初始化碎片列表
-        fragments = mutableListOf(ScheduleFragment.newInstance())
+        fragments = mutableListOf(ScheduleFragment.newInstance(),
+                LessonsFragment.newInstance(),
+                AchievementFragment.newInstance(),
+                SettingFragment.newInstance())
         val transaction = supportFragmentManager.beginTransaction()
         // 添加碎片到view
         for (fragment in fragments) {
             transaction.add(R.id.main_contain, fragment)
         }
+        showFragmentByIndex(0)
         transaction.commitNow()
     }
 }

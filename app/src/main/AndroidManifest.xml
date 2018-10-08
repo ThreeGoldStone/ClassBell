@@ -27,7 +27,6 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:launchMode="singleTask" />
-        <activity android:name=".TestViewModelActivity" />
         <activity android:name=".ViewModeActivity"></activity>
     </application>
 
